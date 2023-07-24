@@ -13,12 +13,16 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        'uni-green': '#6B9559'
+        'uni-green':'#6a9558',
+        'uni-brown':'#5b4f48',
+        'uni-black':'#30322f',
+        'uni-white':'#fdfdff',
+        'uni-cream':'#fffde7',
       },
       animation: {
-        'gradient-x': 'gradient-x 30s ease infinite',
-        'gradient-y': 'gradient-y 30s ease infinite',
-        'gradient-xy': 'gradient-xy 30s ease infinite',
+        'gradient-x': 'gradient-x 21s ease infinite',
+        'gradient-y': 'gradient-y 21s ease infinite',
+        'gradient-xy': 'gradient-xy 21s ease infinite',
       },
       keyframes: {
         'gradient-y': {
