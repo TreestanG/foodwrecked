@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Home - Food Wrecked</title>
+        <title>Food Wrecked</title>
       </Head>
       <Component {...pageProps} />
 
