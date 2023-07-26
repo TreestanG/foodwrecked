@@ -15,7 +15,7 @@ export default function Header() {
             <div className='flex gap-4 md:gap-8 items-baseline'>
                 <a href='/pages/about' className='hidden sm:block px-5 md:text-sm lg:text-lg'>About Us</a>
                 <a href='/' className='hidden sm:block px-5 md:text-sm lg:text-lg '>Connect</a>
-                <a href='/' className='hidden sm:block px-5 md:text-sm lg:text-lg'>Menu</a>
+                <a href='/pages/changelog' className='hidden sm:block px-5 md:text-sm lg:text-lg'>Change Log</a>
                 <button className='hidden md:block bg-uni-green rounded-full px-6 py-3 text-white hover:shadow-lg'>Login</button>
                 <FontAwesomeIcon icon={faBars} className="hidden sm:hidden" />
             </div>
