@@ -1,0 +1,11 @@
+{
+    "0.0.1": {
+        "version": "0.0.1",
+        "date": "24 July 2023 22:37",
+        "title": "Initial Release",
+        "changes": [
+            "First ever release to Food Wrecked. Added basic functionalities with just being able to scroll for recipes. More features will be added in the future.",
+            "So far, the app only contains ~50 recipes. Each recipe contains a title, image, serving size, and meal type."
+        ]
+    }
+}
