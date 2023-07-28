@@ -1,8 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle} from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
-
 
 export default function News() {
     return (

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
-
+import Link from 'next/link'
 
 export default function Header() {
     return (
@@ -16,7 +15,7 @@ export default function Header() {
                 <a href='/pages/about' className='hidden sm:block px-5 md:text-sm lg:text-lg'>About Us</a>
                 <a href='/' className='hidden sm:block px-5 md:text-sm lg:text-lg '>Connect</a>
                 <a href='/pages/changelog' className='hidden sm:block px-5 md:text-sm lg:text-lg'>Change Log</a>
-                <button className='hidden md:block bg-uni-green rounded-full px-6 py-3 text-white hover:shadow-lg'>Login</button>
+                <Link href='/profile/profile'><button className='hidden md:block bg-uni-green rounded-full px-6 py-3 text-white hover:shadow-lg'>Login</button></Link>
                 <FontAwesomeIcon icon={faBars} className="hidden sm:hidden" />
             </div>
         </div>

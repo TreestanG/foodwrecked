@@ -1,7 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFile } from '@fortawesome/free-solid-svg-icons'
-import Link from 'next/link'
 import moment from 'moment'
 
 export default function RecipeCard({ logData }) {
