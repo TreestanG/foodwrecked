@@ -9,6 +9,7 @@
 /coverage
 /test
 /api
+**/test.js
 
 # next.js
 /.next/
