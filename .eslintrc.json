@@ -1,6 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "semis":"always"
+    "semis":0
   }
 }
