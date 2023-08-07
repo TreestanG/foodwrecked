@@ -13,11 +13,10 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        'uni-green':'#6a9558',
-        'uni-brown':'#5b4f48',
-        'uni-black':'#30322f',
-        'uni-white':'#fdfdff',
-        'uni-cream':'#fffde7',
+        'uni-brand':'#FA7268',
+        'uni-dark':'#001220',
+        'uni-pink':'#C62368',
+        'uni-dark-gray':'#272a2d'
       },
       animation: {
         'gradient-x': 'gradient-x 21s ease infinite',
