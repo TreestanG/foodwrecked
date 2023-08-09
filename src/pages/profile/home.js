@@ -67,8 +67,6 @@ ProfileHome.getLayout = function getLayout(page) {
     )
 }
 
-
-
 export async function getServerSideProps(context) {
     const session = await getSession(context)
 
