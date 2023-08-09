@@ -15,8 +15,8 @@ let tabs = [
 export default function SideNav() {
     return (
         <SideBarNavProvider>
-            <div class="flex-col hidden lg:flex  w-[20rem] h-screen divide-y-2">
-                <Link href="/" class="flex justify-center">
+            <div className="flex-col hidden lg:flex  w-[20rem] h-screen divide-y-2 shadow-lg">
+                <Link href="/" className="flex justify-center">
                     <Image src='/chef.png' alt='chef-hat' width={100} height={100}></Image>
                 </Link>
                 {
