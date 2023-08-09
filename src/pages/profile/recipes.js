@@ -3,6 +3,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import SideNav from '../components/dashboard/SideNav'
+import DashboardLayout from '../layout/Dashboard'
 
 export default function ProfileHome() {
     const router = useRouter()
@@ -27,3 +28,13 @@ export async function getServerSideProps(context) {
         }
     }
 }
+
+
+ProfileHome.getLayout = function getLayout(page) {
+    return (
+        <DashboardLayout>
+            {page}
+        </DashboardLayout>
+    )
+}
+
