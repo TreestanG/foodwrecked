@@ -18,9 +18,9 @@ function Home() {
   return (
     <div className="">
       <div className="bg-uni-dark h-[54rem] flex ">
-        <div className="flex items-center px-4 sm:px-32 justify-between w-full z-10">
+        <div className="flex items-center px-4 sm:px-24 md:px-32 pt-32 md:py-0 justify-between w-full z-10 flex-col md:flex-row">
           <div>
-            <div className="text-white text-5xl sm:text-8xl font-semibold w-[24rem] sm:w-[40rem]">
+            <div className="text-white text-5xl md:text-7xl lg:text-8xl font-semibold w-[24rem] sm:w-[40rem]">
               <span className="">The food recommendation app for </span>
               <span className="text-uni-brand">everyone</span>
             </div>
@@ -30,7 +30,7 @@ function Home() {
               </Link>
             </div>
           </div>
-          <Image src='/restaurant.png' className="rounded-3xl hidden md:block" width={500} height={500} alt="restaurant"></Image>
+          <Image src='/restaurant.png' className="rounded-3xl" width={500} height={500} alt="restaurant"></Image>
         </div>
       </div>
       <div className="bg-[url('../../public/layer-1-1.svg')] bg-cover bg-no-repeat w-full aspect-[960/150] bg-center"></div>
