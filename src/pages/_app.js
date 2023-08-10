@@ -26,14 +26,17 @@ export default function MyApp({
     )
   } else {
     return (
-      <SessionProvider session={session}>
+      <SessionProvider session={session} className="">
         <Head>
           <title>Food Wrecked</title>
         </Head>
-        <Header />
-        <main>
-          <Component {...pageProps} />
-        </main>
+        <div className="h-max">
+          <Header />
+          <main className="relative ">
+            <Component {...pageProps} />
+          </main>
+        </div>
+
       </SessionProvider>
 
     )

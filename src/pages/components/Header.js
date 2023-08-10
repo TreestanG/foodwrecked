@@ -14,22 +14,23 @@ export default function Header() {
         return <></>
     }
     return (
-        <div className='flex p-4 justify-between items-center'>
+        <div className='sticky top-0 z-50 flex p-4 justify-between items-center bg-white shadow-md'>
             <Link href="/" className="flex items-center">
                 <Image src='/chef.png' alt='chef-hat' width={50} height={50}></Image>
                 <p className="pl-4 text-3xl text-uni-brand font-light">Food Wrecked</p>
             </Link>
             <form className='hidden sm:flex h-12 w-[30rem] items-center justify-end'>
-                <input className='rounded-full border-1 h-8 w-full bg-slate-200 hidden sm:block md:w-1/2 lg:w-fit'></input>
+                <input className='rounded-full border-1 h-8 w-full bg-slate-200 hidden sm:block sm:w-1/2 lg:w-fit'></input>
                 <FontAwesomeIcon icon={faSearch} className='w-4 h-4 absolute p-5' />
             </form>
             <div className='flex gap-4 md:gap-8 items-baseline'>
                 <Link href='/pages/about' className='hidden sm:block px-5 md:text-sm lg:text-lg'>About Us</Link>
                 <Link href='/' className='hidden sm:block px-5 md:text-sm lg:text-lg '>Connect</Link>
-                <Link href='/pages/changelog' className='hidden sm:block px-5 md:text-sm lg:text-lg'>Change Log</Link>
-                <Link href='/profile/home'><button className='hidden md:block bg-uni-brand rounded-full text-white px-6 py-3 hover:shadow-lg'>{loginBtn}</button></Link>
-                <FontAwesomeIcon icon={faBars} className="hidden sm:hidden" />
+                <Link href='/pages/changelog' className='hidden md:block px-5 md:text-sm lg:text-lg'>Change Log</Link>
+                <Link href='/profile/home'><button className='hidden sm:block bg-uni-brand rounded-full text-white px-6 py-3 hover:shadow-lg'>{loginBtn}</button></Link>
+                <FontAwesomeIcon icon={faBars} className="block sm:hidden" />
             </div>
         </div>
+
     )
 }
