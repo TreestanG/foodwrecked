@@ -45,6 +45,10 @@ module.exports = {
                 diet_types: DataTypes.ARRAY(DataTypes.STRING),
                 skill_level: DataTypes.STRING,
                 keywords: DataTypes.ARRAY(DataTypes.STRING),
+                images: {
+                    type: DataTypes.ARRAY(DataTypes.STRING),
+                    allowNull: true,
+                }
             },
             options: {
                 timestamps: true,
