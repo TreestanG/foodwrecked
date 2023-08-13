@@ -1,4 +1,4 @@
-export function TimeToNum(time) {
+export function timeToNum(time) {
     time = String(time)
     let spltTime = [time.slice(0, time.length-2), time.slice(-2)]
     let mins = parseInt(spltTime[0])
@@ -7,6 +7,9 @@ export function TimeToNum(time) {
     let hours = Math.floor(totalTime/60)
     let minutes = totalTime % 60
     return hours === 0 ? `${minutes}m` : `${hours}h ${minutes}m`
-    
+}
+
+export function stringToFormalCase(str) {
+    return str.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
 }
 
