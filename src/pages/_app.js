@@ -1,3 +1,5 @@
+'use client;'
+
 import './globals.css'
 import { SessionProvider } from 'next-auth/react'
 import { SideBarNavProvider } from './context/SideNavTabContext'
@@ -6,39 +8,37 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import Head from 'next/head'
 import Header from './components/Header'
 config.autoAddCss = false
+import { useEffect } from 'react'
 
 export default function MyApp({
   Component,
   pageProps: { session, ...pageProps }
 }) {
-  const getLayout = Component.getLayout || ((page) => page)
-  if (Component.getLayout) {
-    return getLayout(
 
+  useEffect(() => {
+    import('preline')
+  }, [])
+  const getLayout = Component.getLayout || ((page) => {
+    return (
       <SessionProvider session={session}>
-        <SideBarNavProvider>
-          <Head>
-            <title>Food Wrecked</title>
-          </Head>
-          <Component {...pageProps} />
-        </SideBarNavProvider>
+        <div className="h-max">
+          <Header />
+          <main className="relative">
+            {page}
+          </main>
+        </div>
       </SessionProvider>
     )
-  } else {
-    return (
-      <SessionProvider session={session} className="">
+  })
+
+  return getLayout(
+    <SessionProvider session={session}>
+      <SideBarNavProvider>
         <Head>
           <title>Food Wrecked</title>
         </Head>
-        <div className="h-max">
-          <Header />
-          <main className="relative ">
-            <Component {...pageProps} />
-          </main>
-        </div>
-
-      </SessionProvider>
-
-    )
-  }
+        <Component {...pageProps} />
+      </SideBarNavProvider>
+    </SessionProvider>
+  )
 }
