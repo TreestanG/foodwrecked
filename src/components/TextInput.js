@@ -9,7 +9,7 @@ export default function TextInput({ type = 'text', label }) {
 
     return (
         <div className="input-container border-2 w-80 rounded-lg">
-            <input type={type} value={value} onChange={handleChange} placeholder={`Enter your ${label.toLowerCase()}`} autofocus/>
+            <input type={type} value={value} onChange={handleChange} placeholder={`Enter your ${label.toLowerCase()}`}/>
             <label className={value && 'filled'}>
                 {label}
             </label>
