@@ -37,18 +37,14 @@ module.exports = {
                     allowNull: true,
                 },
                 image: {
-                    type: DataTypes.STRING,
+                    type: DataTypes.ARRAY(DataTypes.STRING),
                     allowNull: true,
                 },
                 courses: DataTypes.ARRAY(DataTypes.STRING),
                 cuisine: DataTypes.STRING,
                 diet_types: DataTypes.ARRAY(DataTypes.STRING),
                 skill_level: DataTypes.STRING,
-                keywords: DataTypes.ARRAY(DataTypes.STRING),
-                images: {
-                    type: DataTypes.ARRAY(DataTypes.STRING),
-                    allowNull: true,
-                }
+                keywords: DataTypes.ARRAY(DataTypes.STRING)
             },
             options: {
                 timestamps: true,
