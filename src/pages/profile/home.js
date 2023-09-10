@@ -6,14 +6,11 @@ import DashboardLayout from '../layout/Dashboard'
 import Image from 'next/image'
 import { SideBarNavContext } from '../context/SideNavTabContext'
 import { useContext, useState } from 'react'
-import { createPortal } from 'react-dom'
-import RecipeModal from '../components/RecipeModal'
 
 const example_data = { 'page': { 'article': { 'author': 'Cassie Best', 'description': 'Give the classNameic blueberry muffin a makeover by adding a crisp maple-sugar glaze, which sets to a cracked crust', 'id': '5199401', 'tags': [] }, 'recipe': { 'collections': ['Muffin', "Valentine's Day brunch", 'Easy muffin'], 'cooking_time': 6400, 'prep_time': 1200, 'serves': 0, 'keywords': ['Baking', 'Fruit muffin recipe', 'Maple syrup cake', 'Cupcakes', 'freezer-friendly muffins'], 'ratings': 90, 'nutrition_info': ['Added sugar 21g', 'Carbohydrate 37g', 'Kcal 240 calories', 'Protein 3g', 'Salt 0.6g', 'Saturated fat 5g', 'Fat 8g'], 'ingredients': ['plain flour', 'baking powder', 'bicarbonate of soda', 'granulated sugar', 'unsalted butter', 'buttermilk', 'egg', 'maple syrup', 'vanilla extract', 'blueberry', 'icing sugar'], 'courses': ['Afternoon tea', 'Breakfast', 'Brunch', 'Treat'], 'cusine': 'American', 'diet_types': [], 'skill_level': 'Easy', 'post_dates': '1435705200' }, 'channel': 'Recipe', 'title': 'Maple-glazed blueberry muffins' } }
 
 export default function ProfileHome() {
     const [activeTab, setActiveTab] = useContext(SideBarNavContext)
-    const [isOpen, setIsOpen] = useState(false)
 
     const { data: session } = useSession()
     setActiveTab('Home')
@@ -58,12 +55,12 @@ export default function ProfileHome() {
                         <div className="flex items-center flex-col">
                             <h1 className="text-2xl font-semibold">You have no recipes yet!</h1>
                             <p className="text-gray-500 pb-4">Create your first recipe to get started!</p>
-                            <button onClick={() => setIsOpen(true)} className=" font-semibold text-3xl rounded-full bg-uni-brand w-16 h-16 hover:shadow-lg hover:bg-red-500">+</button>
+                            <button onClick={() => {
+                                
+                            }} className=" font-semibold text-3xl rounded-full bg-uni-brand w-16 h-16 hover:shadow-lg hover:bg-red-500">+</button>
                         </div>
                     </div>
                 </div>
-                <RecipeModal onClose={() => setIsOpen(false)} isOpened={isOpen} title="test title" />
-
             </div>
         </div>
     )

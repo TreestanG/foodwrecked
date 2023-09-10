@@ -2,13 +2,15 @@ import { getSession } from 'next-auth/react'
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import SideNav from '../components/dashboard/SideNav'
+import SideNav from '../../components/dashboard/SideNav'
 import DashboardLayout from '../layout/Dashboard'
 
 export default function ProfileHome() {
     const router = useRouter()
     const { data: session } = useSession()
-    return <SideNav />
+    return <>
+        
+    </>
 }
 
 export async function getServerSideProps(context) {
