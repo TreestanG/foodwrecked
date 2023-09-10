@@ -14,15 +14,18 @@ let tabs = [
 
 export default function SideNav() {
     return (
-        <div className="sticky z-50 flex-col hidden lg:flex w-[20rem] h-screen divide-y-2 shadow-lg">
+        <div className="sticky z-50 flex-col hidden lg:flex w-[20rem] h-screen shadow-lg">
             <Link href="/" className="flex justify-center">
                 <Image src='/chef.png' alt='chef-hat' width={100} height={100}></Image>
             </Link>
-            {
-                tabs.map(tab => {
-                    return <SideNavTab key={tab[0]} name={tab[0]} icon={tab[1]} link={tab[2]} />
-                })
-            }
+
+            <div className="divide-y-2 ">
+                {
+                    tabs.map(tab => {
+                        return <SideNavTab key={tab[0]} name={tab[0]} icon={tab[1]} link={tab[2]} />
+                    })
+                }
+            </div>
         </div>
     )
 }
