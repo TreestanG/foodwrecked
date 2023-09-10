@@ -6,7 +6,7 @@ import { SideBarNavProvider } from './context/SideNavTabContext'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Head from 'next/head'
-import Header from './components/Header'
+import Header from '../components/Header'
 config.autoAddCss = false
 import { useEffect } from 'react'
 
