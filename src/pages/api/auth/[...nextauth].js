@@ -1,27 +1,15 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from 'next-auth/providers/google'
 import Credentials from "next-auth/providers/credentials";
-import SequelizeAdapter, { models } from "@auth/sequelize-adapter";
-import { DataTypes, Sequelize } from "sequelize";
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    logging: false,
-})
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
 
-sequelize.sync()
+const prisma = new PrismaClient()
 
 const authHandler = NextAuth({
     secret: process.env.AUTH_SECRET,
-    adapter: SequelizeAdapter(sequelize, {
-        models: {
-            Account: sequelize.define('account', {
-                ...models.Account,
-                skillLevel: DataTypes.STRING,
-                cuisine: DataTypes.STRING,
-                dietTypes: DataTypes.ARRAY(DataTypes.STRING),
-            })
-        }
-    }),
+    adapter: PrismaAdapter(prisma),
     providers: [
         Credentials({
             name: "Credentials",
@@ -30,18 +18,7 @@ const authHandler = NextAuth({
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
-                const user = await sequelize.models.accounts.findOne({
-                    where: {
-                        email: credentials.email,
-                        password: credentials.password
-                    }
-                })
-
-                if (user) {
-                    return user
-                } else {
-                    return null
-                }
+                
             }
         }),
         GoogleProvider({
