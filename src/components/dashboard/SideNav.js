@@ -14,7 +14,7 @@ let tabs = [
 
 export default function SideNav() {
     return (
-        <div className="sticky z-50 flex-col hidden lg:flex w-[20rem] h-screen shadow-lg">
+        <div className="sticky z-50 flex-col hidden lg:flex w-[20rem] h-screen mr-4">
             <Link href="/" className="flex justify-center">
                 <Image src='/chef.png' alt='chef-hat' width={100} height={100}></Image>
             </Link>
@@ -25,6 +25,7 @@ export default function SideNav() {
                         return <SideNavTab key={tab[0]} name={tab[0]} icon={tab[1]} link={tab[2]} />
                     })
                 }
+
             </div>
         </div>
     )

@@ -11,8 +11,8 @@ export default function SideNavTab({ name, icon, link }) {
     }
     return (
         <Link href={link}>
-            <button onClick={setTab} className={`flex hover:bg-slate-200 hover:cursor-pointer w-full items-baseline p-8 pl-12  ${activeTab === name ? "text-slate-950 bg-slate-200" : "text-gray-400"}`}>
-                <p className={`text-xl font-medium`}>{name}</p>
+            <button onClick={setTab} className={`flex hover:bg-slate-200 hover:cursor-pointer  w-full items-baseline p-4 pl-12 ml-6 rounded-lg ${activeTab === name ? "text-slate-950 bg-slate-200" : "text-gray-400"}`}>
+                <p className={`text-xl font-medium text-center`}>{name}</p>
             </button>
         </Link>
 
