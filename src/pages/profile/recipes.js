@@ -4,13 +4,15 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import SideNav from '../../components/dashboard/SideNav'
 import DashboardLayout from '../layout/Dashboard'
+import Search from '@/components/Search'
 
 export default function ProfileHome() {
     const router = useRouter()
     const { data: session } = useSession()
-    return <>
-        
-    </>
+    return (<div className='p-14 pt-10'>
+        <Search />
+    </div>
+    )
 }
 
 export async function getServerSideProps(context) {
