@@ -20,7 +20,7 @@ function Home() {
       <div className="bg-uni-dark h-[54rem] flex ">
         <div className="flex items-center px-4 sm:px-24 md:px-32 pt-32 md:py-0 justify-between w-full z-10 flex-col md:flex-row">
           <div>
-            <div className="text-white text-5xl md:text-7xl lg:text-8xl font-semibold w-[24rem] sm:w-[40rem]">
+            <div className="text-white text-6xl md:text-7xl lg:text-8xl font-semibold w-[24rem] sm:w-[40rem]">
               <span className="">The food recommendation app for </span>
               <span className="text-uni-brand">everyone</span>
             </div>
