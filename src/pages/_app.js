@@ -5,6 +5,15 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Head from 'next/head'
 import Header from './components/Header'
+import '@mantine/core/styles.css';
+import { MantineProvider, createTheme } from '@mantine/core'
+
+const theme = createTheme({
+
+})
+
+
+
 config.autoAddCss = false
 
 export default function MyApp({
@@ -12,30 +21,17 @@ export default function MyApp({
   pageProps: { session, ...pageProps }
 }) {
   const getLayout = Component.getLayout || ((page) => page)
-  if (Component.getLayout) {
-    return getLayout(
 
-      <SessionProvider session={session}>
+  return getLayout(
+    <SessionProvider session={session}>
+      <MantineProvider theme={theme}>
         <SideBarNavProvider>
           <Head>
             <title>Food Wrecked</title>
           </Head>
           <Component {...pageProps} />
         </SideBarNavProvider>
-      </SessionProvider>
-    )
-  } else {
-    return (
-      <SessionProvider session={session}>
-        <Head>
-          <title>Food Wrecked</title>
-        </Head>
-        <Header />
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </SessionProvider>
-
-    )
-  }
+      </MantineProvider>
+    </SessionProvider>
+  )
 }
