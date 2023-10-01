@@ -1,28 +1,11 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from 'next-auth/providers/google'
-import GithubProvider from 'next-auth/providers/github'
 import Credentials from "next-auth/providers/credentials";
-import { createLogger, format, transports } from "winston";
 import SequelizeAdapter, { models } from "@auth/sequelize-adapter";
 import { DataTypes, Sequelize } from "sequelize";
 
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
     logging: false,
-})
-
-const winston = createLogger({
-    level: 'info',
-    format: format.combine(
-        format.timestamp({
-            format: 'YYYY-MM-DD HH:mm:ss'
-        }),
-        format.json(),
-        format.errors({ stack: true })
-    ),
-    transports: [
-        new transports.File({ filename: 'logs/error.log', level: 'error' }),
-        new transports.File({ filename: 'logs/combined.log' })
-    ]
 })
 
 sequelize.sync()

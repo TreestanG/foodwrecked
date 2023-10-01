@@ -1,7 +1,6 @@
 import { SideBarNavContext } from "@/pages/context/SideNavTabContext";
 import { useContext, useEffect } from "react";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SideNavTab({ name, icon, link }) {
     const [activeTab, setActiveTab] = useContext(SideBarNavContext)

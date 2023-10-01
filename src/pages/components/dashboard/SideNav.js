@@ -2,7 +2,6 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { SideBarNavProvider } from "@/pages/context/SideNavTabContext";
-import { faHouse, faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { BookOpenIcon, HomeIcon } from '@heroicons/react/outline'
 import SideNavTab from "./SideNavTab";
 import Image from "next/image";
