@@ -8,7 +8,9 @@ import DashboardLayout from '../layout/Dashboard'
 export default function ProfileHome() {
     const router = useRouter()
     const { data: session } = useSession()
-    return <SideNav />
+    return <>
+        
+    </>
 }
 
 export async function getServerSideProps(context) {
