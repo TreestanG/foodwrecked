@@ -6,6 +6,5 @@ export default function DashboardLayout({ children }) {
             <SideNav />
             <main>{children}</main>
         </div>
-
     )
 }
