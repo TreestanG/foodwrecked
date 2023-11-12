@@ -1,43 +1,30 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from 'next-auth/providers/google'
-import Credentials from "next-auth/providers/credentials";
-import SequelizeAdapter, { models } from "@auth/sequelize-adapter";
-import { DataTypes, Sequelize } from "sequelize";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    logging: false,
-})
+const globalForPrisma = global || {}
+export const prisma = globalForPrisma.prisma || new PrismaClient()
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 
-sequelize.sync()
 
 const authHandler = NextAuth({
     secret: process.env.AUTH_SECRET,
-    adapter: SequelizeAdapter(sequelize, {
-        models: {
-            Account: sequelize.define('account', {
-                ...models.Account,
-                skillLevel: DataTypes.STRING,
-                cuisine: DataTypes.STRING,
-                dietTypes: DataTypes.ARRAY(DataTypes.STRING),
-            })
-        }
-    }),
+    adapter: PrismaAdapter(prisma),
     providers: [
-        Credentials({
-            name: "Credentials",
-            credentials: {
-                email: { label: "Email", type: "email" },
-                password: { label: "Password", type: "password" }
-            },
-            async authorize(credentials, req) {
-
-            }
-        }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
         })
     ],
+    callbacks: {
+        async session({ session, token, user }) {
+            // Send properties to the client, like an access_token and user id from a provider.
+            session.user.id = token.id
+
+            return session
+        }
+    }
 })
 
 export default async function handler(...params) {
