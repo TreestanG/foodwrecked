@@ -1,6 +1,5 @@
 import './globals.css'
 import { SessionProvider } from 'next-auth/react'
-import { SideBarNavProvider } from './context/SideNavTabContext'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Head from 'next/head'
