@@ -1,6 +1,6 @@
 import React from 'react';
 import Entries from '../../../logs.json'
-import ChangeLogEntry from '../components/ChangeLogEntry.js'
+import ChangeLogEntry from './components/ChangeLogEntry.js'
 
 export default function ChangeLog() {
     return (
