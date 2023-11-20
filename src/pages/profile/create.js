@@ -5,6 +5,7 @@ import { useForm } from '@mantine/form'
 import { useDisclosure } from '@mantine/hooks'
 import { notifications } from '@mantine/notifications'
 import Image from 'next/image'
+import RecipeCard from '../components/RecipeCard'
 
 export default function AddRecipe() {
     const { data: session } = useSession()
@@ -23,13 +24,11 @@ export default function AddRecipe() {
             courses: [],
             cuisine: '',
             diet_types: [],
-            skill_level: '',
+            skill_level: 'Easy',
             post_dates: new Date(),
             images: '',
-            author: session.user.id
         }
     })
-
 
     let { name, instructions, ingredients, cuisine, diet_type, skill_level, image, author, prep_time, cooking_time, serving_size, keywords, notes } = form.values
 
@@ -43,6 +42,15 @@ export default function AddRecipe() {
         diffColor = "yellow"
     } else if (skill_level == "Hard") {
         diffColor = "red"
+    }
+
+    const recipe = {
+        image,
+        name,
+        cuisine,
+        diffColor,
+        skill_level,
+        diet_type,
     }
 
     return (
@@ -59,7 +67,7 @@ export default function AddRecipe() {
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(values)
+                        body: JSON.stringify({ recipe: values, author: session.user.email })
                     }).then((res) => res.json()).then((data) => {
                         notifications.show({
                             title: "Recipe Added!",
@@ -198,34 +206,9 @@ export default function AddRecipe() {
                     </Group>
                 </form>
 
-                <div className="ml-10">
-                    <Card shadow="sm" padding="md" radius="lg" withBorder >
-                        <Card.Section>
-                            <Image src={image} height={240} width={330} alt="recipe" />
-                        </Card.Section>
-
-                        <Group justify="space-between">
-                            <div>
-                                <Text fw={500} pt="md">{name}</Text>
-                                <Text size="md" color="gray" pb="sm">{cuisine}</Text>
-                            </div>
-                            <div>
-                                <Badge color={diffColor} >{skill_level}</Badge>
-                                <Text size="md" color="gray" >{diet_type}</Text>
-                            </div>
-                        </Group>
-
-
-                        <Group pb="md">
-                            {
-                                ingredients.map(i => {
-                                    return <Badge key={i} color={diffColor} variant="dot">{i}</Badge>
-                                })
-                            }
-                        </Group>
-
-                    </Card>
-                </div>
+                <RecipeCard 
+                    recipe={recipe}
+                /> 
 
             </Group>
 
