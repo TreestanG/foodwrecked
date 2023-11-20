@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment'
 
-export default function RecipeCard({ logData }) {
+export default function ChangeLogCard({ logData }) {
     const fromNowDate = moment(logData.date).fromNow()
 
     return (
