@@ -1,15 +1,38 @@
 import { getSession } from 'next-auth/react'
-import { useSession, signIn, signOut } from "next-auth/react"
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import SideNav from '../components/dashboard/SideNav'
 import DashboardLayout from '../layout/Dashboard'
+import { prisma } from '../api/auth/[...nextauth]'
+import RecipeCard from '../components/RecipeCard'
+import { useEffect, useState } from 'react'
 
 export default function ProfileHome() {
-    const router = useRouter()
-    const { data: session } = useSession()
+    const [recipes, setRecipes] = useState([]);
+
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            try {
+                const recipesData = await fetch('/api/recipe/find').then(res => res.json())
+
+                setRecipes(recipesData);
+            } catch (error) {
+                console.error('Error fetching recipes:', error);
+            }
+        };
+
+        fetchRecipes();
+    }, []);
+
+    const recipeData = recipes.map(recipe => {
+        return {
+            ...recipe, diffColor: recipe.difficulty === 'Easy' ? 'green' : recipe.difficulty === 'Intermediate' ? 'yellow' : 'red'
+        }
+    })
+
     return <>
-        
+        {
+            recipeData.map(recipe => {
+                return <RecipeCard recipe={recipe} key={recipe.name} />
+            })
+        }
     </>
 }
 
