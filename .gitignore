@@ -22,6 +22,7 @@
 .DS_Store
 *.pem
 /logs
+/public/uploads
 
 # debug
 npm-debug.log*
@@ -45,3 +46,5 @@ next-env.d.ts
 
 # cert
 *.crt
+
+
