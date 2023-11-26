@@ -1,17 +1,15 @@
 import './globals.css'
 import { SessionProvider } from 'next-auth/react'
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import Head from 'next/head'
 import '@mantine/core/styles.css';
 import { MantineProvider, createTheme } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
+import { ActiveIndexProvider } from './context/ActiveIndexContext'
 
 const theme = createTheme({
 
 })
 
-config.autoAddCss = false
 
 export default function MyApp({
   Component,
@@ -22,12 +20,14 @@ export default function MyApp({
   return <>
     <SessionProvider session={session}>
       <MantineProvider theme={theme}>
-        <Notifications />
         <Head>
           <title>Food Wrecked</title>
         </Head>
-        {
-          getLayout(<Component {...pageProps} />)}
+        <ActiveIndexProvider>
+          {getLayout(<Component {...pageProps} />)}
+        </ActiveIndexProvider>
+        <Notifications />
+
       </MantineProvider>
     </SessionProvider>
   </>
