@@ -4,7 +4,7 @@ import Image from "next/image"
 export default function RecipeCard({ recipe }) {
 
     let { name, cuisine, diffColor, skill_level, diet_type, ingredients} = recipe
-    const image = recipe.image
+    const image = recipe.images
     if(!ingredients) ingredients = []
 
     return <div className="ml-10">

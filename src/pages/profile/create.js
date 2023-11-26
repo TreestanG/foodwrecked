@@ -12,7 +12,6 @@ export default function AddRecipe() {
 
     const form = useForm({
         initialValues: {
-            collections: [],
             cooking_time: 0,
             instructions: [],
             prep_time: 0,
@@ -26,13 +25,13 @@ export default function AddRecipe() {
             diet_types: [],
             skill_level: 'Easy',
             post_dates: new Date(),
-            images: '',
         }
     })
 
-    let { name, instructions, ingredients, cuisine, diet_type, skill_level, image, author, prep_time, cooking_time, serving_size, keywords, notes } = form.values
+    let { name, ingredients, cuisine, diet_type, skill_level, images } = form.values
 
-    image = image ? URL.createObjectURL(image) : ''
+    let ogImage = images
+    images = images ? URL.createObjectURL(images) : ''
 
 
     const [opened, { toggle }] = useDisclosure(false)
@@ -45,13 +44,15 @@ export default function AddRecipe() {
     }
 
     const recipe = {
-        image,
+        images,
         name,
         cuisine,
+        ingredients,
         diffColor,
         skill_level,
         diet_type,
     }
+
 
     return (
         <div className='p-8'>
@@ -62,17 +63,24 @@ export default function AddRecipe() {
                         values.instructions = values.instructions.split('\n')
                     }
 
+                    const formData = new FormData()
+                    Object.entries(values).forEach(([k, v]) => {
+                        formData.append(k, v)
+                    })
+                    formData.append("author", session.user.email)
+                    formData.append("image", ogImage)
+
+
                     fetch('/api/recipe/add', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ recipe: values, author: session.user.email })
+                        body: formData
                     }).then((res) => res.json()).then((data) => {
                         notifications.show({
                             title: "Recipe Added!",
                             message: "Your recipe was successfully added!",
                         })
+                    }).catch(err => {
+                        console.log(err)
                     })
                 })}>
                     <TextInput
@@ -141,7 +149,7 @@ export default function AddRecipe() {
                         label="Upload Image"
                         mt="md"
                         mb="md"
-                        {...form.getInputProps('image')}
+                        {...form.getInputProps('images')}
                     />
 
                     <Anchor onClick={toggle} >More Options</Anchor>
@@ -206,9 +214,9 @@ export default function AddRecipe() {
                     </Group>
                 </form>
 
-                <RecipeCard 
+                <RecipeCard
                     recipe={recipe}
-                /> 
+                />
 
             </Group>
 

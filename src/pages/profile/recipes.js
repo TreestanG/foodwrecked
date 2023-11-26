@@ -4,7 +4,7 @@ import { prisma } from '../api/auth/[...nextauth]'
 import RecipeCard from '../components/RecipeCard'
 import { useEffect, useState } from 'react'
 
-export default function ProfileHome() {
+export default function Recipes() {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
