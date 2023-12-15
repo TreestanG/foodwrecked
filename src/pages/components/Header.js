@@ -9,10 +9,7 @@ export default function Header() {
 
     const { data: session } = useSession()
     let loginBtn = session ? "Profile" : "Login"
-
-    if (!session) {
-        return <></>
-    }
+    
     return (
         <div className='flex p-4 justify-between items-center'>
             <Link href="/" className="flex items-center">
