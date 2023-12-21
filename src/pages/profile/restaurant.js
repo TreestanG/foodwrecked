@@ -36,7 +36,6 @@ let demoData = {
 
 export default function ProfileHome() {
     const [value, setValue] = useState('')
-    const idle = useIdle(2500)
     const [businesses, setBusinesses] = useState([])
     const [coords, setCoords] = useState({})
 
@@ -58,7 +57,6 @@ export default function ProfileHome() {
             },
             body: JSON.stringify({ apiLink, apiKey })
         }).then(res => res.json()).then(data => {
-            console.log(data.businesses)
             setBusinesses(data.businesses)
         })
     }
@@ -66,32 +64,30 @@ export default function ProfileHome() {
 
 
     return (
-        <div className='flex justify-center flex-wrap p-20'>
-            <h1 className='text-5xl font-bold '>Welcome to the restaurants page!</h1>
-            <TextInput className='w-3/4'
-                placeholder='Search for recipes'
-                leftSection={<IconSearch />}
-                variant='filled'
-                radius='lg'
-                mt={20}
-                value={value}
-                onChange={(event) => setValue(event.currentTarget.value)}
-                onKeyDown={
-                    getHotkeyHandler([
-                        ['enter', handleSearch]
-                    ])
-                }
-            />
+        <div className='flex flex-col items-center p-8'>
+            <h1 className='text-5xl font-bold mb-8'>Restaurants</h1>
+            <div className="code-container max-h-96 "> {/* Use overflow-hidden to hide the scroll bar */}
+                <TextInput
+                    placeholder='Search for recipes'
+                    leftSection={<IconSearch />}
+                    variant='filled'
+                    radius='lg'
+                    mt={4}
+                    value={value}
+                    onChange={(event) => setValue(event.currentTarget.value)}
+                    onKeyDown={getHotkeyHandler([['enter', handleSearch]])}
+                />
 
-            <div className='p-12 flex flex-wrap w-1/2'>
-                {
-                    businesses ? businesses.map(business => {
-                        return <RestaurantCard restaurant={business} key={business.id} />
-                    }) : undefined
-                }
+                <div className="mt-4">
+                    <div className="grid grid-cols-3 gap-4">
+                        {businesses &&
+                            businesses.map(business => (
+                                <RestaurantCard restaurant={business} key={business.id} />
+                            ))}
+                    </div>
+                </div>
             </div>
         </div>)
-
 }
 
 export async function getServerSideProps(context) {
