@@ -8,21 +8,24 @@ generator client {
 }
 
 model Account {
-  id                String   @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?  @db.Text
-  access_token      String?  @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?  @db.Text
-  session_state     String?
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Recipe            Recipe[]
-  Rating            Rating[]
+  id                     String        @id @default(cuid())
+  userId                 String
+  type                   String
+  provider               String
+  providerAccountId      String
+  refresh_token          String?       @db.Text
+  access_token           String?       @db.Text
+  expires_at             Int?
+  token_type             String?
+  scope                  String?
+  id_token               String?       @db.Text
+  session_state          String?
+  user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Recipe                 Recipe[]
+  Rating                 Rating[]
+  Restauraunt            Restauraunt[]
+  food_categories        String[]
+  restauraunt_categories String[]
 
   @@unique([provider, providerAccountId, userId])
 }
@@ -44,8 +47,6 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
-
 
 model VerificationToken {
   identifier String
@@ -74,7 +75,7 @@ model Recipe {
   images         String
   Rating         Rating[]
   name           String
-  author         Account @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author         Account  @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId       String
 }
 
@@ -85,4 +86,23 @@ model Rating {
   recipeId Int
   author   Account @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId String
+}
+
+model Restauraunt {
+  id           Int      @id @default(autoincrement())
+  yelp_id      String
+  name         String
+  image        String
+  is_closed    Boolean
+  url          String
+  review_count Int
+  categories   String[]
+  rating       Float
+  lat          Float
+  long         Float
+  price        String
+  location     String
+  phone        String
+  author       Account  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId     String
 }
