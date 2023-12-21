@@ -23,6 +23,7 @@
 *.pem
 /logs
 /public/uploads
+/prisma/migrations
 
 # debug
 npm-debug.log*
