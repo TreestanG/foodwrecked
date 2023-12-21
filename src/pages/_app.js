@@ -5,6 +5,7 @@ import '@mantine/core/styles.css';
 import { MantineProvider, createTheme } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { ActiveIndexProvider } from './context/ActiveIndexContext'
+import Header from './components/Header';
 
 const theme = createTheme({
 
@@ -16,20 +17,26 @@ export default function MyApp({
   pageProps: { session, ...pageProps }
 }) {
   const getLayout = Component.getLayout || ((page) => page)
+  const Layout = getLayout(
+    <>
+      {Component.getLayout ? null : <Header />}
+      <ActiveIndexProvider>
+        <Component {...pageProps} />
+      </ActiveIndexProvider>
+      <Notifications />
+    </>
+  )
 
-  return <>
-    <SessionProvider session={session}>
-      <MantineProvider theme={theme}>
-        <Head>
-          <title>Food Wrecked</title>
-        </Head>
-        <ActiveIndexProvider>
-          {getLayout(<Component {...pageProps} />)}
-        </ActiveIndexProvider>
-        <Notifications />
-
-      </MantineProvider>
-    </SessionProvider>
-  </>
-
+  return (
+    <>
+      <SessionProvider session={session}>
+        <MantineProvider theme={theme}>
+          <Head>
+            <title>Food Wrecked</title>
+          </Head>
+          {Layout}
+        </MantineProvider>
+      </SessionProvider>
+    </>
+  )
 }
