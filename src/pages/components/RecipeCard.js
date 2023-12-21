@@ -7,7 +7,7 @@ export default function RecipeCard({ recipe }) {
     const image = recipe.images
     if(!ingredients) ingredients = []
 
-    return <div className="ml-10">
+    return <div className="m-5">
         <Card shadow="sm" padding="md" radius="lg" withBorder m="md" >
             <Card.Section>
                 <Image src={image} height={240} width={330} alt="recipe" />
