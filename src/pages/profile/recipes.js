@@ -27,13 +27,13 @@ export default function Recipes() {
         }
     })
 
-    return <>
+    return <div className="flex flex-wrap ">
         {
             recipeData.map(recipe => {
                 return <RecipeCard recipe={recipe} key={recipe.name} />
             })
         }
-    </>
+    </div>
 }
 
 export async function getServerSideProps(context) {
@@ -55,7 +55,7 @@ export async function getServerSideProps(context) {
 }
 
 
-ProfileHome.getLayout = function getLayout(page) {
+Recipes.getLayout = function getLayout(page) {
     return (
         <DashboardLayout>
             {page}
