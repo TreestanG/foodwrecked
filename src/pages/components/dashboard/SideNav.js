@@ -1,38 +1,59 @@
-
+import { IconHome2, IconToolsKitchen2, IconLogout, IconCompass, IconSoup } from "@tabler/icons-react";
+import { useContext, useState } from "react";
+import { ActiveIndexContext } from "@/pages/context/ActiveIndexContext";
 import Link from "next/link";
 import Image from "next/image";
-import { NavLink } from "@mantine/core";
-import { IconHome2, IconToolsKitchen2 } from "@tabler/icons-react";
-import { useState } from "react";
-
+import { Divider, Code } from "@mantine/core";
 
 let tabs = [
-    { icon: IconHome2, name: "Home", href: "/profile/home" },
-    { icon: IconToolsKitchen2, name: "Explore Recipes", href: "/profile/recipes" },
-    { icon: IconToolsKitchen2, name: "Add Recipe", href: "/profile/create" },
-]
+    { icon: IconHome2, label: "Home", link: "/profile/home" },
+    { icon: IconCompass, label: "Explore Recipes", link: "/profile/recipes" },
+    { icon: IconToolsKitchen2, label: "Add Recipe", link: "/profile/create" },
+    { icon: IconSoup, label: "Restaurants", link: "/profile/restaurant" },
+];
 
 export default function SideNav() {
-    const [active, setActive] = useState(0)
+    const [active, setActive] = useState('Home');
 
     return (
-        <div className="flex-col hidden lg:flex  w-[20rem] h-screen divide-y-2 shadow-lg mr-8">
-            <Link href="/" className="flex justify-center">
-                <Image src='/chef.png' alt='chef-hat' width={100} height={100}></Image>
-            </Link>
-            {
-                tabs.map((tab, index) => {
-                    return <NavLink
-                        key={index}
-                        icon={<tab.icon />}
-                        label={tab.name}
-                        active={active === index}
-                        onClick={() => setActive(index)}
-                        href={tab.href}
+        <div className="w-[280px] h-screen top-0 left-0 overflow-auto mx-4 mr-8 flex flex-col justify-between border-r-2 pr-4 border-gray-100 sticky">
+            <div>
+                <div className="flex justify-center">
+                    <Link href="/">
+                        <Image
+                            src="/chef.png"
+                            height={100}
+                            width={100}
+                        />
+                    </Link>
 
-                    />
-                })
-            }
+                </div>
+
+                <Divider className="py-4" />
+
+                <div className="flex flex-col content-between h-fit">
+                    {tabs.map((tab, index) => (
+                        <Link href={tab.link} key={index} className={`flex items-center space-x-2 p-2 py-4 rounded-md ${active === tab.label ? 'bg-uni-brand text-white' : 'text-gray-700'} hover:bg-gray-200 hover:text-gray-900`}
+                            onClick={() => setActive(tab.label)}>
+
+
+                            <tab.icon className="w-5 h-5" />
+                            <span>{tab.label}</span>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+
+            <div>
+                <Divider />
+                <a className="flex items-center space-x-2 p-2 py-12 rounded-md text-gray-700"
+                    href="#"
+                    onClick={(event) => event.preventDefault()}>
+                    <IconLogout className="w-5 h-5" />
+                    <span>Logout</span>
+                </a>
+            </div>
+
         </div>
-    )
+    );
 }
