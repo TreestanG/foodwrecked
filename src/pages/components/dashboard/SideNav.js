@@ -16,7 +16,7 @@ export default function SideNav() {
     const [active, setActive] = useState('Home');
 
     return (
-        <div className="w-[280px] h-screen top-0 left-0 overflow-auto mx-4 mr-8 flex flex-col justify-between border-r-2 pr-4 border-gray-100 sticky">
+        <div className="hidden w-[280px] h-screen top-0 left-0 mx-4 mr-8 md:flex flex-col justify-between border-r-2 pr-4 border-gray-100 sticky">
             <div>
                 <div className="flex justify-center">
                     <Link href="/">
