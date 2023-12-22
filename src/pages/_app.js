@@ -18,13 +18,13 @@ export default function MyApp({
 }) {
   const getLayout = Component.getLayout || ((page) => page)
   const Layout = getLayout(
-    <>
+    <div className="overflow-y-auto">
       {Component.getLayout ? null : <Header />}
       <ActiveIndexProvider>
         <Component {...pageProps} />
       </ActiveIndexProvider>
       <Notifications />
-    </>
+    </div>
   )
 
   return (
