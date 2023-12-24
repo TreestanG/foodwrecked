@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { RecipeFilterProvider, RecipeFilterContext } from './context/RecipeFilterContext'
 import { IconBurger, IconSearch, IconWorld } from '@tabler/icons-react'
 // bg-gradient-to-r from-slate-950 via-green-950 to-teal-950
 

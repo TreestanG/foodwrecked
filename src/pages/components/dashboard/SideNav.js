@@ -1,9 +1,8 @@
 import { IconHome2, IconToolsKitchen2, IconLogout, IconCompass, IconSoup } from "@tabler/icons-react";
-import { useContext, useState } from "react";
-import { ActiveIndexContext } from "@/pages/context/ActiveIndexContext";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Divider, Code } from "@mantine/core";
+import { Divider } from "@mantine/core";
 
 let tabs = [
     { icon: IconHome2, label: "Home", link: "/profile/home" },

@@ -4,7 +4,6 @@ import Head from 'next/head'
 import '@mantine/core/styles.css';
 import { MantineProvider, createTheme } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
-import { ActiveIndexProvider } from './context/ActiveIndexContext'
 import Header from './components/Header';
 
 const theme = createTheme({
@@ -20,10 +19,7 @@ export default function MyApp({
   const Layout = getLayout(
     <div className="overflow-y-auto">
       {Component.getLayout ? null : <Header />}
-      <ActiveIndexProvider>
         <Component {...pageProps} />
-      </ActiveIndexProvider>
-      <Notifications />
     </div>
   )
 
@@ -34,6 +30,7 @@ export default function MyApp({
           <Head>
             <title>Food Wrecked</title>
           </Head>
+          <Notifications />
           {Layout}
         </MantineProvider>
       </SessionProvider>
