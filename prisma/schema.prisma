@@ -8,24 +8,24 @@ generator client {
 }
 
 model Account {
-  id                     String        @id @default(cuid())
-  userId                 String
-  type                   String
-  provider               String
-  providerAccountId      String
-  refresh_token          String?       @db.Text
-  access_token           String?       @db.Text
-  expires_at             Int?
-  token_type             String?
-  scope                  String?
-  id_token               String?       @db.Text
-  session_state          String?
-  user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Recipe                 Recipe[]
-  Rating                 Rating[]
-  Restauraunt            Restauraunt[]
-  food_categories        String[]
-  restauraunt_categories String[]
+  id                    String       @id @default(cuid())
+  userId                String
+  type                  String
+  provider              String
+  providerAccountId     String
+  refresh_token         String?      @db.Text
+  access_token          String?      @db.Text
+  expires_at            Int?
+  token_type            String?
+  scope                 String?
+  id_token              String?      @db.Text
+  session_state         String?
+  user                  User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Recipe                Recipe[]
+  Rating                Rating[]
+  Restaurant            Restaurant[]
+  food_categories       String[]
+  restaurant_categories String[]
 
   @@unique([provider, providerAccountId, userId])
 }
@@ -88,7 +88,7 @@ model Rating {
   authorId String
 }
 
-model Restauraunt {
+model Restaurant {
   id           Int      @id @default(autoincrement())
   yelp_id      String
   name         String
