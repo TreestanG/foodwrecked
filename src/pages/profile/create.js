@@ -70,7 +70,6 @@ export default function AddRecipe() {
                     formData.append("author", session.user.email)
                     formData.append("image", ogImage)
 
-
                     fetch('/api/recipe/add', {
                         method: 'POST',
                         body: formData
@@ -78,6 +77,7 @@ export default function AddRecipe() {
                         notifications.show({
                             title: "Recipe Added!",
                             message: "Your recipe was successfully added!",
+                            color: 'green'
                         })
                     }).catch(err => {
                         console.log(err)
