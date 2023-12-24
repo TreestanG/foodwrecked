@@ -1,10 +1,9 @@
-import { getSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 import DashboardLayout from '../layout/Dashboard'
-import { prisma } from '../api/auth/[...nextauth]'
 import { useEffect, useState } from 'react'
-import { CloseButton, Input, TextInput } from '@mantine/core'
+import { ScrollArea, TextInput } from '@mantine/core'
 import { IconSearch } from '@tabler/icons-react'
-import { getHotkeyHandler, useIdle } from '@mantine/hooks'
+import { getHotkeyHandler } from '@mantine/hooks'
 import RestaurantCard from '../components/RestaurantCard'
 
 let demoData = {
@@ -35,6 +34,7 @@ let demoData = {
 }
 
 export default function ProfileHome() {
+    const { data: session } = useSession()
     const [value, setValue] = useState('')
     const [businesses, setBusinesses] = useState([])
     const [coords, setCoords] = useState({})
@@ -64,30 +64,35 @@ export default function ProfileHome() {
 
 
     return (
-        <div className='flex flex-col items-center p-8'>
-            <h1 className='text-5xl font-bold mb-8'>Restaurants</h1>
-            <div className="code-container max-h-96 "> {/* Use overflow-hidden to hide the scroll bar */}
-                <TextInput
-                    placeholder='Search for recipes'
-                    leftSection={<IconSearch />}
-                    variant='filled'
-                    radius='lg'
-                    mt={4}
-                    value={value}
-                    onChange={(event) => setValue(event.currentTarget.value)}
-                    onKeyDown={getHotkeyHandler([['enter', handleSearch]])}
-                />
-
+        <div className='flex flex-col p-8'>
+            <h1 className='text-5xl mb-8'>Restaurants</h1>
+            <TextInput
+                placeholder='Search for recipes'
+                leftSection={<IconSearch />}
+                variant='filled'
+                radius='lg'
+                mt={4}
+                value={value}
+                onChange={(event) => setValue(event.currentTarget.value)}
+                onKeyDown={getHotkeyHandler([['enter', handleSearch]])}
+            />
+            <ScrollArea h={1000} className='p-4'>
                 <div className="mt-4">
                     <div className="grid grid-cols-3 gap-4">
                         {businesses &&
                             businesses.map(business => (
-                                <RestaurantCard restaurant={business} key={business.id} />
+                                <RestaurantCard restaurant={business} key={business.id} session={session} />
                             ))}
                     </div>
                 </div>
+            </ScrollArea>
+
+            <div className="code-container max-h-screen overflow-y-auto pr-8"> {/* Use overflow-y-hidden to remove the scroll bar */}
+
+
             </div>
-        </div>)
+        </div>
+    )
 }
 
 export async function getServerSideProps(context) {
