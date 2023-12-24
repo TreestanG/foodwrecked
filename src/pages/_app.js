@@ -5,6 +5,7 @@ import '@mantine/core/styles.css';
 import { MantineProvider, createTheme } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import Header from './components/Header';
+import '@mantine/notifications/styles.css'
 
 const theme = createTheme({
 
