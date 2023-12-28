@@ -40,7 +40,7 @@ export default async function handle(req, res) {
                 where: {
                     email: jsonData.author
                 }
-            
+
             })
 
             if (!user) {
@@ -58,43 +58,36 @@ export default async function handle(req, res) {
                 res.status(404).json({ error: 'Account not found' });
                 return;
             }
-            
+
             const file = data.files.image
-            if (!file) {
-                res.status(400).json({ error: 'No files received.' });
-                return;
+            if (file) {
+                const tempPath = file[0].filepath;
+                const fileExt = path.extname(file[0].originalFilename).toLowerCase();
+
+                renameSync(tempPath, `./public/uploads/${file[0].newFilename}${fileExt}`, (err) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ error: 'Could not save file.' });
+                        return;
+                    }
+                })
             }
-
-            //console.log(file[0])
-
-            const tempPath = file[0].filepath;
-            const fileExt = path.extname(file[0].originalFilename).toLowerCase();
-
-            renameSync(tempPath, `./public/uploads/${file[0].newFilename}${fileExt}`, (err) => {
-                if (err) {
-                    console.log(err);
-                    res.status(500).json({ error: 'Could not save file.' });
-                    return;
-                }
-            })
-
-            
             const recipe = await prisma.recipe.create({
                 data: {
-                    ...jsonData, 
+                    ...jsonData,
                     author: {
                         connect: {
                             id: account.id
                         }
                     },
-                    images: `/uploads/${file[0].newFilename}${fileExt}`,
+                    images: file ? `/uploads/${file[0].newFilename}${fileExt}`:"",
                 },
             });
 
             res.status(200).json({ id: recipe.id });
 
 
-            
+
         } catch (error) {
             console.log("Error occured ", error);
             res.status(500).json({ error });

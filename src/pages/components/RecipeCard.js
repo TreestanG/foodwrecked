@@ -9,10 +9,13 @@ export default function RecipeCard({ recipe }) {
 
     return <div className="m-5">
         <Card shadow="sm" padding="md" radius="lg" withBorder m="md" >
-            <Card.Section>
+            {
+                image ? <Card.Section>
                 <Image src={image} height={240} width={330} alt="recipe" />
-            </Card.Section>
+            </Card.Section> : null
 
+            }
+            
             <Group justify="space-between">
                 <div>
                     <Text fw={500} pt="md">{name}</Text>
