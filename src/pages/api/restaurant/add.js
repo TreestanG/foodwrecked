@@ -30,6 +30,18 @@ export default async function handle(req, res) {
                 res.status(404).json({ error: 'Account not found' });
                 return;
             }
+
+            const existingRes = await prisma.restaurant.findFirst({
+                where: {
+                    yelp_id: data.yelp_id
+                }
+            })
+
+            if (existingRes) {
+                console.log('restaurant already exists')
+                res.status(409).json({ error: 'Restaurant already exists' });
+                return;
+            }
             
             const restaurant = await prisma.restaurant.create({
                 data: {

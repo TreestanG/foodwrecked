@@ -46,12 +46,20 @@ export default function RestaurantCard({ restaurant, session }) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({data: actRestObj, email: session.user.email})
-        }).then(() => {
-            notifications.show({
-                title: "Success!",
-                message: `${name} added to your list`,
-                color: 'green',
-            })
+        }).then(res => {
+            if(res.status === 200) {
+                notifications.show({
+                    title: "Success!",
+                    message: `${name} added to your list`,
+                    color: 'green',
+                })
+            } else if (res.status === 409) {
+                notifications.show({
+                    title: "Error!",
+                    message: `${name} already exists in your list`,
+                    color: 'red',
+                })
+            }  
         })
         
     }
