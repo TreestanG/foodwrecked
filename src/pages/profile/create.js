@@ -68,7 +68,7 @@ export default function AddRecipe() {
                         formData.append(k, v)
                     })
                     formData.append("author", session.user.email)
-                    formData.append("image", ogImage)
+                    formData.append("images", ogImage)
 
                     fetch('/api/recipe/add', {
                         method: 'POST',
