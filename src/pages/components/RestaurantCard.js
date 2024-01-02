@@ -70,7 +70,7 @@ export default function RestaurantCard({ restaurant, session }) {
             radius="md"
             m={8}>
             <Card.Section>
-                <Image src={image_url} alt={name} h={200} fit="cover" />
+                <Image src={image_url} alt={x} h={200} fit="cover" />
             </Card.Section>
 
             <Group justify="space-between" mt="md">
