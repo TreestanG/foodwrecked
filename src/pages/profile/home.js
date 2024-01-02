@@ -3,10 +3,10 @@ import { useSession, signOut } from "next-auth/react"
 import Link from 'next/link'
 import { TimeToNum } from '../../../util/type_helpers'
 import DashboardLayout from '../layout/Dashboard'
-import Image from 'next/image'
-import { Button, ButtonGroup, NavLink } from '@mantine/core'
+import { Image,     } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import RecipeCard from '../components/RecipeCard'
+import RestaurantCard from '../components/RestaurantCard'
 
 const example_data = { 'page': { 'article': { 'author': 'Cassie Best', 'description': 'Give the classic blueberry muffin a makeover by adding a crisp maple-sugar glaze, which sets to a cracked crust', 'id': '5199401', 'tags': [] }, 'recipe': { 'collections': ['Muffin', "Valentine's Day brunch", 'Easy muffin'], 'cooking_time': 6400, 'prep_time': 1200, 'serves': 0, 'keywords': ['Baking', 'Fruit muffin recipe', 'Maple syrup cake', 'Cupcakes', 'freezer-friendly muffins'], 'ratings': 90, 'nutrition_info': ['Added sugar 21g', 'Carbohydrate 37g', 'Kcal 240 calories', 'Protein 3g', 'Salt 0.6g', 'Saturated fat 5g', 'Fat 8g'], 'ingredients': ['plain flour', 'baking powder', 'bicarbonate of soda', 'granulated sugar', 'unsalted butter', 'buttermilk', 'egg', 'maple syrup', 'vanilla extract', 'blueberry', 'icing sugar'], 'courses': ['Afternoon tea', 'Breakfast', 'Brunch', 'Treat'], 'cusine': 'American', 'diet_types': [], 'skill_level': 'Easy', 'post_dates': '1435705200' }, 'channel': 'Recipe', 'title': 'Maple-glazed blueberry muffins' } }
 
@@ -20,11 +20,20 @@ export default function ProfileHome() {
     const totalTime = TimeToNum(cooking_time + prep_time)
 
     const [recipes, setRecipes] = useState([]);
+    const [restaurants, setRestaurants] = useState([]);
 
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
-                const recipesData = await fetch('/api/recipe/find').then(res => res.json())
+                const recipesData = await fetch('/api/recipe/find', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({
+                        user: session.user.email
+                    })
+                }).then(res => res.json())
 
                 setRecipes(recipesData);
             } catch (error) {
@@ -33,8 +42,9 @@ export default function ProfileHome() {
         };
 
         fetchRecipes();
-    }, []);
+    }, [session]);
 
+    
     const recipeData = recipes.map(recipe => {
         return {
             ...recipe, diffColor: recipe.difficulty === 'Easy' ? 'green' : recipe.difficulty === 'Intermediate' ? 'yellow' : 'red'
@@ -44,13 +54,12 @@ export default function ProfileHome() {
     return (
         <div className="flex">
             <div className="">
-                <div className="flex p-11 justify-between">
+                <div className="flex p-11 space-between">
                     <div className="">
                         <h1 className="text-4xl font-semibold">Welcome, {session.user.name}</h1>
                         <p className=" text-gray-500">Manage your recipes, favorites, and preferred choices here!</p>
                     </div>
                     <div className="flex gap-16">
-                        <button onClick={signOut} className=''>Sign Out</button>
                         <Image src={session.user.image ?? "/blank.jpg"} width={64} height={64} alt="profile" className="rounded-full" ></Image>
                     </div>
                 </div>
@@ -69,8 +78,8 @@ export default function ProfileHome() {
                     </div>
                 </Link> */}
 
-                <h1 className="text-4xl font-medium py-8">Your Recipes</h1>
-                <div className="flex flex-wrap p-3 border-2 rounded-md">
+                <h1 className="text-4xl font-medium pb-8">Your Recipes</h1>
+                <div className="flex flex-wrap border-2 rounded-md">
                     {
                         recipeData.map((recipe, index) => {
                             return (
@@ -82,6 +91,7 @@ export default function ProfileHome() {
                         })
                     }
                 </div>
+
             </div>
         </div>
     )
