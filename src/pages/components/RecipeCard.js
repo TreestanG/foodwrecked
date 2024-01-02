@@ -7,7 +7,7 @@ export default function RecipeCard({ recipe }) {
     const image = recipe.images
     if(!ingredients) ingredients = []
 
-    return <div className="m-5">
+    return <div className="m-2">
         <Card shadow="sm" padding="md" radius="lg" withBorder m="md" >
             {
                 image ? <Card.Section>
