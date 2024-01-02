@@ -7,6 +7,5 @@ export function TimeToNum(time) {
     let hours = Math.floor(totalTime/60)
     let minutes = totalTime % 60
     return hours === 0 ? `${minutes}m` : `${hours}h ${minutes}m`
-    
 }
 
