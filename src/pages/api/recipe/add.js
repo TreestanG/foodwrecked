@@ -2,6 +2,7 @@ import { prisma } from "../auth/[...nextauth]";
 import { Formidable } from 'formidable'
 import { renameSync } from "fs";
 import path from 'path'
+import findAcc from "../../../../util/findAccFromEmail";
 
 export const config = {
     api: {
@@ -36,28 +37,8 @@ export default async function handle(req, res) {
         jsonData = Object.fromEntries(jsonData)
 
         try {
-            const user = await prisma.user.findUnique({
-                where: {
-                    email: jsonData.author
-                }
-
-            })
-
-            if (!user) {
-                res.status(404).json({ error: 'User not found' });
-                return;
-            }
-
-            const account = await prisma.account.findFirst({
-                where: {
-                    userId: user.id
-                }
-            })
-
-            if (!account) {
-                res.status(404).json({ error: 'Account not found' });
-                return;
-            }
+            
+            const acc = await findAcc(prisma, jsonData.author)
 
             const file = data.files.image
             if (file) {
@@ -77,7 +58,7 @@ export default async function handle(req, res) {
                     ...jsonData,
                     author: {
                         connect: {
-                            id: account.id
+                            id: acc.id
                         }
                     },
                     images: file ? `/uploads/${file[0].newFilename}${fileExt}`:"",

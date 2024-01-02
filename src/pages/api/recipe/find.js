@@ -1,16 +1,22 @@
+import findAcc from "../../../../util/findAccFromEmail";
+
 const { prisma } = require("../auth/[...nextauth]");
+
 
 export default async function handle(req, res) {
 
     if (req.method === 'POST') {
         const data = req.body
-        const id = data.id
+        const id = data.user
+
+        let acc = await findAcc(prisma, id)
 
         const recipe = await prisma.recipe.findMany({
             where: {
-                authorId: id
+                authorId: acc.id
             }
         })
+
         res.json(recipe)
     } else {
         const recipes = await prisma.recipe.findMany()
