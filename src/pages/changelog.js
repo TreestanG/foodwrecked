@@ -1,7 +1,6 @@
 import React from 'react';
 import ChangeLogEntry from './components/ChangeLogEntry.js'
 import Entries from '../../logs.json'
-import OutsideLayout from './layout/Outside.js';
 
 export default function ChangeLog() {
     return (
@@ -14,13 +13,5 @@ export default function ChangeLog() {
                 }
             </div>
         </div>
-    )
-}
-
-ChangeLog.getLayout = function getLayout(page) {
-    return (
-        <OutsideLayout>
-            {page}
-        </OutsideLayout>
     )
 }
