@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Divider } from "@mantine/core";
+import { signOut } from "next-auth/react";
 
 let tabs = [
     { icon: IconHome2, label: "Home", link: "/profile/home" },
@@ -15,7 +16,7 @@ export default function SideNav() {
     const [active, setActive] = useState('Home');
 
     return (
-        <div className="hidden w-[280px] h-screen top-0 left-0 mx-4 mr-8 md:flex flex-col justify-between border-r-2 pr-4 border-gray-100 sticky">
+        <div className="hidden w-1/6 h-screen top-0 left-0 mx-4 mr-8 md:flex flex-col justify-between border-r-2 pr-4 border-gray-100 sticky">
             <div>
                 <div className="flex justify-center">
                     <Link href="/">
@@ -47,7 +48,7 @@ export default function SideNav() {
                 <Divider />
                 <a className="flex items-center space-x-2 p-2 py-12 rounded-md text-gray-700"
                     href="#"
-                    onClick={(event) => event.preventDefault()}>
+                    onClick={signOut}>
                     <IconLogout className="w-5 h-5" />
                     <span>Logout</span>
                 </a>
