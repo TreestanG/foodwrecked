@@ -13,7 +13,7 @@ export default function Home() {
             <span className="text-uni-brand">everyone</span>
           </div>
           <Link href='/profile/home'>
-            <button className="bg-uni-brand rounded-full px-6 py-3 text-white mt-10 ml-5 text-lg hover:shadow-2xl hover:shadow-uni-brand">Get Started</button>
+            <button className="bg-uni-brand px-6 py-3 text-white mt-10 ml-5 text-lg hover:shadow-2xl hover:shadow-uni-brand">Get Started</button>
           </Link>
         </div>
       </div>
@@ -24,8 +24,8 @@ export default function Home() {
 
       <div className="flex justify-center flex-col p-20">
         <div className="text-center">
-          <h1 className="text-6xl font-bold">The Ultimate Food Recommendation App</h1>
-          <p className="text-3xl font p-4 text-gray-500">Personalized recommendations for you. Anytime, anywhere. That&lsquo;s it. </p>
+          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">The Ultimate Food Recommendation App</h1>
+          <p className="text-2xl lg:text-3xl font p-4 text-gray-500">Personalized recommendations for you. Anytime, anywhere. That&lsquo;s it. </p>
         </div>
       </div>
 
