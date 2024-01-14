@@ -1,12 +1,10 @@
 import { getSession } from 'next-auth/react'
-import { useSession, signOut } from "next-auth/react"
-import Link from 'next/link'
+import { useSession } from "next-auth/react"
 import { TimeToNum } from '../../../util/type_helpers'
 import DashboardLayout from '../layout/Dashboard'
-import { Image,     } from '@mantine/core'
+import { Avatar } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import RecipeCard from '../components/RecipeCard'
-import RestaurantCard from '../components/RestaurantCard'
 
 const example_data = { 'page': { 'article': { 'author': 'Cassie Best', 'description': 'Give the classic blueberry muffin a makeover by adding a crisp maple-sugar glaze, which sets to a cracked crust', 'id': '5199401', 'tags': [] }, 'recipe': { 'collections': ['Muffin', "Valentine's Day brunch", 'Easy muffin'], 'cooking_time': 6400, 'prep_time': 1200, 'serves': 0, 'keywords': ['Baking', 'Fruit muffin recipe', 'Maple syrup cake', 'Cupcakes', 'freezer-friendly muffins'], 'ratings': 90, 'nutrition_info': ['Added sugar 21g', 'Carbohydrate 37g', 'Kcal 240 calories', 'Protein 3g', 'Salt 0.6g', 'Saturated fat 5g', 'Fat 8g'], 'ingredients': ['plain flour', 'baking powder', 'bicarbonate of soda', 'granulated sugar', 'unsalted butter', 'buttermilk', 'egg', 'maple syrup', 'vanilla extract', 'blueberry', 'icing sugar'], 'courses': ['Afternoon tea', 'Breakfast', 'Brunch', 'Treat'], 'cusine': 'American', 'diet_types': [], 'skill_level': 'Easy', 'post_dates': '1435705200' }, 'channel': 'Recipe', 'title': 'Maple-glazed blueberry muffins' } }
 
@@ -54,13 +52,13 @@ export default function ProfileHome() {
     return (
         <div className="flex">
             <div className="">
-                <div className="flex p-11 space-between">
+                <div className="flex px-6 pb-11 pt-4 space-between">
                     <div className="">
-                        <h1 className="text-4xl font-semibold">Welcome, {session.user.name}</h1>
+                        <h1 className="text-2xl font-semibold">Welcome, {session.user.name}</h1>
                         <p className=" text-gray-500">Manage your recipes, favorites, and preferred choices here!</p>
                     </div>
                     <div className="flex gap-16">
-                        <Image src={session.user.image ?? "/blank.jpg"} width={64} height={64} alt="profile" className="rounded-full" ></Image>
+                        <Avatar src={session.user.image ?? "/blank.jpg"} alt="profile" radius="xl" ></Avatar>
                     </div>
                 </div>
                 {/* <h1 className=" text-4xl font-medium">Recipe of the day...</h1>
@@ -78,14 +76,13 @@ export default function ProfileHome() {
                     </div>
                 </Link> */}
 
-                <h1 className="text-4xl font-medium pb-8">Your Recipes</h1>
+                <h1 className="text-2xl font-medium pb-8">Your Recipes</h1>
                 <div className="flex flex-wrap border-2 rounded-md">
                     {
-                        recipeData.map((recipe, index) => {
+                        recipeData.slice(0,3).map((recipe, index) => {
                             return (
-                                <div className="w-1/3 p-2" key={recipe.name}>
+                                <div className="w-1/3" key={recipe.name}>
                                     <RecipeCard recipe={recipe} />
-                                    {(index + 1) % 3 === 0 && <div className="w-full"></div>}
                                 </div>
                             );
                         })
