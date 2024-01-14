@@ -18,7 +18,7 @@ export default function MyApp({
 }) {
   const getLayout = Component.getLayout || ((page) => page)
   const Layout = getLayout(
-    <div className="overflow-y-auto">
+    <div className="overflow-y-auto w-full">
       {Component.getLayout ? null : <Header />}
         <Component {...pageProps} />
     </div>

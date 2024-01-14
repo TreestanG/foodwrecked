@@ -2,9 +2,9 @@ import SideNav from "../components/dashboard/SideNav";
 
 export default function DashboardLayout({ children }) {
     return (
-        <div className="flex h-max overflow-y-auto">
+        <div className="flex h-max overflow-y-auto w-full">
             <SideNav />
-            <main>{children}</main>
+            <main className="w-full">{children}</main>
         </div>
     )
 }
