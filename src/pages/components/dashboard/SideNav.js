@@ -26,7 +26,6 @@ export default function SideNav() {
                             width={100}
                         />
                     </Link>
-
                 </div>
 
                 <Divider className="py-4" />
@@ -46,7 +45,7 @@ export default function SideNav() {
 
             <div>
                 <Divider />
-                <a className="flex items-center space-x-2 p-2 py-12 rounded-md text-gray-700"
+                <a className="flex items-center space-x-2 p-2 py-6 rounded-md text-gray-700"
                     href="#"
                     onClick={signOut}>
                     <IconLogout className="w-5 h-5" />
