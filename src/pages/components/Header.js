@@ -15,12 +15,14 @@ export default function Header() {
                 <p className="pl-4 text-3xl text-uni-brand font-light">Food Wrecked</p>
             </Link>
             
-            <div className='flex gap-4 md:gap-8 items-baseline'>
-                <Link href='/pages/about' className='hidden sm:block px-5 md:text-sm lg:text-lg'>About Us</Link>
-                <Link href='/' className='hidden sm:block px-5 md:text-sm lg:text-lg '>Connect</Link>
-                <Link href='/pages/changelog' className='hidden sm:block px-5 md:text-sm lg:text-lg'>Change Log</Link>
-                <Link href='/profile/home'><button className='hidden md:block bg-uni-brand rounded-full text-white px-6 py-3 hover:shadow-lg'>{loginBtn}</button></Link>
+            <div className='md:flex gap-4 md:gap-12 md:-ml-20 items-baseline text-lg uppercase hidden px-5 md:text-sm lg:text-md'>
+                <Link href='/pages/about'>About Us</Link>
+                <Link href='/'>Connect</Link>
+                <Link href='/pages/changelog'>Change Log</Link>
             </div>
+
+            <Link href='/profile/home'><button className='hidden md:block bg-uni-brand text-white px-6 py-3 hover:shadow-lg'>{loginBtn}</button></Link>
+
         </div>
     )
 }
