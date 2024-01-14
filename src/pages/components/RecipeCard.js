@@ -21,19 +21,7 @@ export default function RecipeCard({ recipe }) {
                     <Text fw={500} pt="md">{name}</Text>
                     <Text size="md" color="gray" pb="sm">{cuisine}</Text>
                 </div>
-                <div>
-                    <Badge color={diffColor} >{skill_level}</Badge>
-                    <Text size="md" color="gray" >{diet_type}</Text>
-                </div>
-            </Group>
-
-
-            <Group pb="md">
-                {
-                    ingredients.map(i => {
-                        return <Badge key={i} color={diffColor} variant="dot">{i}</Badge>
-                    })
-                }
+                
             </Group>
 
         </Card>
